@@ -1,4 +1,4 @@
-package net.pixx.wolfenstein.Player;
+package net.pixx.wolfenstein.player;
 
 /* Imports */
 import net.pixx.wolfenstein.Wolfenstein;

@@ -1,7 +1,7 @@
 package net.pixx.wolfenstein;
 
 /* Imports */
-import net.pixx.wolfenstein.Player.Player;
+import net.pixx.wolfenstein.player.Player;
 import net.pixx.wolfenstein.exceptions.FatalExceptions;
 import net.pixx.wolfenstein.exceptions.WolfException;
 import net.pixx.wolfenstein.level.Level;
@@ -15,7 +15,6 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
 
 public class Wolfenstein implements Runnable {
 	/* Objects */
