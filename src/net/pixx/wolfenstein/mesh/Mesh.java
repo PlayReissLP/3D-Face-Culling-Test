@@ -26,7 +26,7 @@ public class Mesh {
 	
 	public void render() {
 		int texCount = 0;
-		for(int i = 0; i < this.vertices.length; i+=3) {
+		for(int i = 0; i < this.vertices.length; i += 3) {
 			GL11.glTexCoord2f(this.texCoords[texCount], this.texCoords[texCount + 1]);
 			GL11.glVertex3f(vertices[i], vertices[i + 1], this.vertices[i + 2]);
 			

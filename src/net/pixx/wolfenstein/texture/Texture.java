@@ -26,8 +26,6 @@ public class Texture {
 	private int width;
 	private int height;
 	private int id;
-	public static final float TEXTURE_WIDTH = 64f / 512f;
-	public static final float TEXTURE_HEIGHT = 64f / 2048;
 	
 	/* Arrays */
 	private int[] atlas_pixels;
@@ -101,13 +99,5 @@ public class Texture {
 	
 	public int getId() {
 		return this.id;
-	}
-	
-	public static float getTextureWidthPos(int x) {
-		return x * Texture.TEXTURE_WIDTH;
-	}
-	
-	public static float getTextureHeightPos(int y) {
-		return y * Texture.TEXTURE_HEIGHT;
 	}
 }

@@ -15,9 +15,7 @@ public class Player {
 	public double rotY;
 	private int speed;
 	
-	/**
-	 * Constructor
-	 */
+	/* Constructor */
 	public Player(double posX, double posY, double posZ) {
 		// Initializing.
 		this.posX = posX;
@@ -26,9 +24,7 @@ public class Player {
 		this.speed = 5;
 	}
 	
-	/**
-	 * Methods
-	 */
+	/* Methods */
 	/**
 	 * Updating player stuff.
 	 */

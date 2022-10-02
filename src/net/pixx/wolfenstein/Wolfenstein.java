@@ -32,7 +32,7 @@ public class Wolfenstein implements Runnable {
 	public Wolfenstein() {
 		// Initializing.
 		this.running = true;
-		this.player = new Player(0, 0.5f, 5);
+		this.player = new Player(5, 0.5f, 5);
 		this.level = new Level();
 	}
 
