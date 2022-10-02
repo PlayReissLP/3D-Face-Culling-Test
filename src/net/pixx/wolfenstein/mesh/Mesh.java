@@ -9,33 +9,28 @@ import org.lwjgl.opengl.GL11;
  * @author Pixx CEO
  */
 public class Mesh {
-	/* Variables */
-	private float r, g, b;
-	
 	/* Arrays */
 	private float[] vertices;
+	private float[] texCoords;
 	
 	/**
 	 * Constructor
 	 * 
 	 * @param vertices Vertices array to use.
-	 * @param r Red color.
-	 * @param g Green color.
-	 * @param b Blue color.
 	 */
-	public Mesh(float[] vertices, float r, float g, float b) {
+	public Mesh(float[] vertices, float[] texCoords) {
 		// Initializing.
 		this.vertices = vertices;
-		this.r = r;
-		this.g = g;
-		this.b = b;
+		this.texCoords = texCoords;
 	}
 	
 	public void render() {
-		GL11.glColor3f(this.r, this.g, this.b);
-		
+		int texCount = 0;
 		for(int i = 0; i < this.vertices.length; i+=3) {
+			GL11.glTexCoord2f(this.texCoords[texCount], this.texCoords[texCount + 1]);
 			GL11.glVertex3f(vertices[i], vertices[i + 1], this.vertices[i + 2]);
+			
+			texCount += 2;
 		}
 	}
 }

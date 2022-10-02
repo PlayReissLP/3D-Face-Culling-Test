@@ -32,7 +32,7 @@ public class Wolfenstein implements Runnable {
 	public Wolfenstein() {
 		// Initializing.
 		this.running = true;
-		this.player = new Player(0, 1, 5);
+		this.player = new Player(0, 0.5f, 5);
 		this.level = new Level();
 	}
 
@@ -148,6 +148,7 @@ public class Wolfenstein implements Runnable {
 	/* Private Methods */
 	private void initGame() {
 		Texture.textures.put("level_0", new Texture("/levels/level_0.png"));
+		Texture.textures.put("sheet", new Texture("/tiles/sheet.png"));
 		
 		this.grabMouse();
 		
@@ -169,6 +170,8 @@ public class Wolfenstein implements Runnable {
 		GL11.glFrontFace(GL11.GL_CW);
 		GL11.glCullFace(GL11.GL_BACK);
 		GL11.glEnable(GL11.GL_CULL_FACE);
+		
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
 	
 	/**
