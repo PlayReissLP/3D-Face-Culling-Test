@@ -100,6 +100,7 @@ public class Wolfenstein implements Runnable {
 	 */
 	private void update(float dt) {
 		this.player.update(dt);
+		this.level.checkCollision(this.player);
 	}
 	
 	/**
@@ -164,7 +165,7 @@ public class Wolfenstein implements Runnable {
 		
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GLU.gluPerspective(45, Wolfenstein.WINDOW_WIDTH / Wolfenstein.WINDOW_HEIGHT, 0.3f, 1000f);
+		GLU.gluPerspective(45, Wolfenstein.WINDOW_WIDTH / Wolfenstein.WINDOW_HEIGHT, 0.2f, 1000f);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		
 		GL11.glFrontFace(GL11.GL_CW);

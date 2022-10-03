@@ -8,10 +8,15 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
+import net.pixx.wolfenstein.collision.Collision;
+import net.pixx.wolfenstein.entities.Entity;
 import net.pixx.wolfenstein.mesh.Mesh;
 import net.pixx.wolfenstein.texture.Texture;
 
 public class Level {
+	/* Objects */
+	BufferedImage levelMap;
+	
 	/* Variables */
 	private int r_levelList;
 	
@@ -22,10 +27,11 @@ public class Level {
 	public Level() {
 		// Initializing.
 		this.levelWorld = new ArrayList<Mesh>();
+		this.levelMap = null;
 	}
 	
 	public void loadLevel(int level) {
-		BufferedImage levelMap = Texture.textures.get("level_0").getImage();
+		this.levelMap = Texture.textures.get("level_0").getImage();
 		
 		for(int x = 0; x < levelMap.getWidth(); x++) {
 			for(int y = 0; y < levelMap.getHeight(); y++) {
@@ -171,5 +177,40 @@ public class Level {
 	public void render() {
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, Texture.textures.get("sheet").getId());
 		GL11.glCallList(this.r_levelList);
+	}
+	
+	public void checkCollision(Entity e) {
+		int posTileX = (int)(e.getPosX() - e.width / 2);
+		int posTileY = (int)(e.getPosZ() - e.height / 2);
+		
+		for(int x = 0; x < 2; x++) {
+			for(int y = 0; y < 2; y++) {
+				int newPosTileX = posTileX + x;
+				int newPosTileY = posTileY + y;
+				
+				Color color = new Color(this.levelMap.getRGB(newPosTileX, newPosTileY));
+				if(color.getRed() == 0
+					&& color.getGreen() == 0
+					&& color.getBlue() == 0) {
+					if(Collision.collideRectWithRect(e.prevPosZ - e.width / 2, e.posZ - e.height / 2, e.width, e.height,
+						newPosTileX, newPosTileY, 1, 1)) {
+						if(e.prevPosZ < newPosTileY + 0.5f) {
+							e.posZ = newPosTileY - e.height / 2;
+						} else {
+							e.posZ = newPosTileY + 1 + e.height / 2;
+						}
+					}
+					
+					if(Collision.collideRectWithRect(e.posX - e.width / 2, e.prevPosZ - e.height / 2, e.width, e.height,
+						newPosTileX, newPosTileY, 1, 1)) {
+						if(e.prevPosX < newPosTileX + 0.5f) {
+							e.posX = newPosTileX - e.width / 2;
+						} else {
+							e.posX = newPosTileX + 1 + e.width / 2;
+						}
+					}
+				}
+			}
+		}
 	}
 }

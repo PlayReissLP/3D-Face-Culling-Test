@@ -2,26 +2,29 @@ package net.pixx.wolfenstein.player;
 
 /* Imports */
 import net.pixx.wolfenstein.Wolfenstein;
+import net.pixx.wolfenstein.entities.Entity;
+import net.pixx.wolfenstein.level.Level;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-public class Player {
+public class Player extends Entity {
 	/* Variables */
-	public double posX;
-	public double posY;
-	public double posZ;
 	public double rotX;
 	public double rotY;
 	private int speed;
 	
 	/* Constructor */
 	public Player(double posX, double posY, double posZ) {
+		super(0.5f, 0.6f);
+		
 		// Initializing.
-		this.posX = posX;
-		this.posY = posY;
-		this.posZ = posZ;
 		this.speed = 5;
+		super.posX = posX;
+		super.posY = posY;
+		super.posZ = posZ;
+		this.rotX = 0;
+		this.rotY = 180;
 	}
 	
 	/* Methods */
@@ -44,21 +47,25 @@ public class Player {
 		
 		Mouse.setCursorPosition(Wolfenstein.getWidth() / 2, Wolfenstein.getHeight() / 2);
 		
+		super.prevPosX = super.posX;
+		super.prevPosY = super.posY;
+		super.prevPosZ = super.posZ;
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.posX += Math.cos(Math.toRadians(this.rotY - 90)) * this.speed * dt;
-			this.posZ += Math.sin(Math.toRadians(this.rotY - 90)) * this.speed * dt;
+			super.posX += Math.cos(Math.toRadians(this.rotY - 90)) * this.speed * dt;
+			super.posZ += Math.sin(Math.toRadians(this.rotY - 90)) * this.speed * dt;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.posX -= Math.cos(Math.toRadians(this.rotY - 90)) * this.speed * dt;
-			this.posZ -= Math.sin(Math.toRadians(this.rotY - 90)) * this.speed * dt;
+			super.posX -= Math.cos(Math.toRadians(this.rotY - 90)) * this.speed * dt;
+			super.posZ -= Math.sin(Math.toRadians(this.rotY - 90)) * this.speed * dt;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.posX += Math.cos(Math.toRadians(this.rotY)) * this.speed * dt;
-			this.posZ += Math.sin(Math.toRadians(this.rotY)) * this.speed * dt;
+			super.posX += Math.cos(Math.toRadians(this.rotY)) * this.speed * dt;
+			super.posZ += Math.sin(Math.toRadians(this.rotY)) * this.speed * dt;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			this.posX -= Math.cos(Math.toRadians(this.rotY)) * this.speed * dt;
-			this.posZ -= Math.sin(Math.toRadians(this.rotY)) * this.speed * dt;
+			super.posX -= Math.cos(Math.toRadians(this.rotY)) * this.speed * dt;
+			super.posZ -= Math.sin(Math.toRadians(this.rotY)) * this.speed * dt;
 		}
 	}
 	
